@@ -1,0 +1,677 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{font-family:"Arial",sans-serif;}
+.MsoPapDefault
+	{line-height:115%;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN
+style='font-size:18.0pt;line-height:115%'>PROJECT MIDWAY REPORT</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN>OVERVIEW:</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-indent:.5in'><b><span lang=EN>Analysis of
+related papers on mineral classification were done. We then extracted all the
+required spectral data, did the data preprocessing, feature extraction and
+applied ML-KNN - the machine learning algorithm for multi label
+classification,multi classifier SVM and Random forest classifier on our data,
+noted down the accuracy of the results. Finally algorithms were compared.</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN>LITERATURE ANALYSIS:</span></b></p>
+
+<p class=MsoNormal><span lang=EN> </span></p>
+
+<p class=MsoNormal><span lang=EN>Although mineral detection wasn't done using
+machine learning algorithms much in the past, we were still able to find some
+related papers on multi label classification done on minerals. We did a
+thorough analysis on 2 such insightful papers and also found 3 useful related
+papers. The two insightful papers are:</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><b><span lang=EN style='color:#1A1B18'>(i) Vision based metal
+spectral analysis using multi-label classification.</span></b></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN style='color:#1A1B18'> Eranga Ukwatta et
+al.(2009) DOI: </span><span lang=EN><a
+href="https://doi.org/10.1109/CRV.2009.42"><span style='color:#1155CC'>https://doi.org/10.1109/CRV.2009.42</span></a></span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><u><span lang=EN>Aim</span></u><span lang=EN>: Using  computer
+vision and machine learning techniques on (LIBS) spectra, presented an in situ
+fully automatic method for detecting constituent elements in a sample specimen.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN>Overview</span></u><span lang=EN>: Unlike
+the traditional classification problems where classes are mutually exclusive,
+in spectral analysis a spectrum could contain emissions from multiple elements
+such that the disjointness of the labels is no longer valid. Here they casted
+the metal detection problem as a multi-label classification and thus enabling
+detection of elemental composition of the specimen.  They applied both SVM and
+ANN to multiple metal classification and compared the performance and found
+that both machine learning approaches yield correct identification of metals to
+an accuracy of 99%.</span></p>
+
+<p class=MsoNormal><span lang=EN>            The  feature set that was to be
+taken was chosen based on an average similarity score obtained by correlating a
+pattern template present in the NIST  database with each signature to be
+classified. As the metals were earlier known the features were taken only on
+the peaks of the corresponding metals.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN>For SVM they used a
+one-vs-rest classification approach i.e, they decomposed the problem into a set
+of binary classification problems and developed a classifier for each class
+which considers each training sample as positive to which it belongs and as
+negative to all others. To determine labels of a test sample, the binary
+classifiers thus developed were run individually on the test sample and every
+label for which the output of the classifier exceeds a predetermined threshold
+is selected as a label of the sample.They used Radial Basis Function (RBF) as
+the kernel and extend the SVM to multi-label classification.Six binary
+classifiers were used for each metal classes. The main advantage of SVM that
+was considered in the paper is that the classifier complexity was seen as the
+property of the support vectors and not the dimension of transformed space.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN>For ANN one output
+node per class was chosen for the multi label classification.Multi-layer
+perceptron with one hidden layer was considered.The feed forward ANN was
+trained by back propagation learning technique.The data was taken without
+rearrangement. </span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN> Limitations found
+include insufficient frequency response and non-uniform quantum efficiency
+characteristic of the camera used.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN>Similarity</span></u><span lang=EN>: The
+paper makes use of a multi-label classification approach to metal spectroscopy
+which enables multi-element analysis.We are also using the multi label
+classification approach to identify the minerals present in the spectra.
+Another similarity is, accurate elemental analysis is not required but rather a
+qualitative analysis. Our work also involves only qualitative analysis, and not
+any quantitative analysis.The use of SVM and ANN showed promising results and
+we are testing with SVM initially as ANN was seen to have overfitting.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN style='color:#1A1B18'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><b><span lang=EN style='color:#1A1B18'>(ii)Multi-label
+classification for drill-core hyperspectral mineral mapping.</span></b></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN style='color:#1A1B18'> I. C. Contreras et
+al.(2020) DOI: </span><span lang=EN><a
+href="https://doi.org/10.5194/isprs-archives-XLIII-B3-2020-383-2020"><span
+style='color:#1155CC'>https://doi.org/10.5194/isprs-archives-XLIII-B3-2020-383-2020</span></a></span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN style='color:#1A1B18'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN>Aim</span></u><span lang=EN>: A multi-label
+classification concept is introduced for the mineral mapping task in drill-core
+hyperspectral data analysis using machine learning algorithms.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN>Overview</span></u><span lang=EN>:For
+generating the training set they  used SEM-MLA data, which provides
+high-resolution mineralogical analysis For the multi-label classification,
+Classifier Chain method (CC) is implemented using the Random Forest (RF)
+algorithm as the base classifier. The quantitative and qualitative analysis of
+the obtained results shows that the multi-label classification approach
+provides meaningful and descriptive mineral maps and outperforms the
+single-label RF classification for the mineral mapping task. </span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><u><span lang=EN>Similarity</span></u><span lang=EN>: We are
+both working on hyperspectral data related to minerals. Both of us are using
+machine learning classification algorithms and using multi-label classification
+in the process.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>Some other papers which we found useful to our
+topic include:</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>(iii) <span style='background:white'>Su, Q.,
+Zhao, Y., Yang, K., &amp; Zhang, S. (2014). <i>Lunar terrain and mineral’s
+abundance automatic analysis. Optik - International Journal for Light and
+Electron Optics, 125(3), 1278–1282.</i> doi:10.1016/j.ijleo.2013.08.022</span></span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN> (iv)Yu, D., &amp; Wang, J. (2020). <i>A
+survey on machine learning in chemical spectral analysis. Journal of
+Information Hiding and Privacy Protection, 2(4), 165-174. </i>doi:http://dx.doi.org/10.32604/jihpp.2020.010466</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>(v)<span style='background:white'> Zhang, Y.,
+Li, M., Han, S., Ren, Q., &amp; Shi, J. (2019). <i>Intelligent Identification
+for Rock-Mineral Microscopic Images Using Ensemble Machine Learning Algorithms.
+Sensors, 19(18), 3914.</i> doi:10.3390/s19183914</span></span></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#980000;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#980000;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='background:
+white'>First reflectance spectra of M-3 hyperspectral data was plotted. For
+training and testing our data, we acquired the necessary data from R<span
+style='color:#1A1B18'>ELAB and PDS spectral data from Mineral and Rock Sample
+Database obtained from Centre For Terrestrial and Planetary Exploration
+(C-TAPE). We took the sample database for:</span></span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>(i) spectral data for the  mixture of  orthopyroxene and
+clinopyroxene.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>(ii) spectral data for the  mixture of orthopyroxene and
+olivine.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>(iii) pure spectral data of olivine.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>(iv)pure spectral data of orthopyroxene.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>(v) pure spectral data of clinopyroxene.</span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span lang=EN style='color:#1A1B18;
+background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'> We
+converted the data into .xlsx format.</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>We then
+did the experiment using the four dataset above and compared the accuracy
+results obtained via the three machine learning algorithms.</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#1A1B18;background:white'>Data
+preprocessing:</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN style='color:#1A1B18;background:white'>➢<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><b><span lang=EN style='color:#1A1B18;background:white'>Data
+cleaning</span></b><span lang=EN style='color:#1A1B18;background:white'> was
+done. We found and deleted the rows and columns with missing data. </span></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN style='color:#1A1B18;background:white'>➢<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN style='color:#1A1B18;background:white'>We also made
+sure no duplicated data was found and the noisy data were also cleared.</span></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN style='color:#1A1B18;background:white'>➢<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN style='color:#1A1B18;background:white'>We then
+proceeded with the <b>data transformation</b>. This included normalization of
+the data, and that was done by continuum removal.</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>The
+spectra after continuum removal is as shown below:</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><img width=240 height=172
+src="Project_midway_files/image001.gif" align=left hspace=12 vspace=12><img
+width=249 height=158 src="Project_midway_files/image002.gif" align=left
+hspace=12 vspace=12></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><img width=232 height=172
+src="Project_midway_files/image003.gif" align=left hspace=12 vspace=12><img
+width=259 height=172 src="Project_midway_files/image004.gif" align=left
+hspace=12 vspace=12></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#980000;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#1A1B18;background:white'>Feature
+Engineering:</span></b></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN>➢<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b><span
+lang=EN style='background:white'>Feature engineering</span></b><span lang=EN
+style='background:white'> includes </span><span lang=EN>Pre-processing of
+existing features,adding new features, and selecting the best features or
+combination of features based on feature importance.</span></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN>➢<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN>As for our dataset, we considered one of the important features as the
+viewing geometry, and only those with viewing geometry of 30 degree were
+considered. </span></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN>➢<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN>We also made sure that the data of the same wavelengths are being
+considered and compared. And that the range between the wavelengths noted are
+the same.</span></p>
+
+<p class=MsoNormal style='margin-left:13.5pt;text-indent:-13.5pt'><span
+lang=EN>➢<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b><span
+lang=EN>Feature selection</span></b><span lang=EN> was done by plotting the
+number of components vs variance, using the </span><b><span lang=EN
+style='font-size:12.0pt;line-height:115%;color:#202124;background:white'>Principal
+Component Analysis</span></b><span lang=EN style='font-size:12.0pt;line-height:
+115%;color:#202124;background:white'> (PCA)</span><span lang=EN> technique. The
+resulting data frame was saved.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>This data was then split into training and
+testing data by the 80/20 ratio taking 20%.</span></p>
+
+<p class=MsoNormal><span lang=EN>We then applied some machine learning
+algorithms on this data and compared the F1 score and the accuracy score among
+them<span style='color:#980000'>. </span>The machine learning algorithms
+applied were SVM, ML-KNN, and Random Forest algorithm. The observations
+obtained are as given below:</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<table class=1 border=1 cellspacing=0 cellpadding=0 width=624 style='margin-left:
+ .1pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=156 valign=top style='width:117.0pt;border:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='font-size:13.0pt'>Classes</span></b></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border:solid black 1.0pt;
+  border-left:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='font-size:13.0pt'>SVM</span></b></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border:solid black 1.0pt;
+  border-left:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='font-size:13.0pt'>ML - KNN</span></b></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border:solid black 1.0pt;
+  border-left:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='font-size:13.0pt'>Random Forest</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:60.75pt'>
+  <td width=156 valign=top style='width:117.0pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt;height:60.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='font-size:13.0pt'>F1-score of:</span></b></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN>Olivine</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN>Orthopyroxene</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN>Clinopyroxene</span></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:60.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.80</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>1.00</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.98</span></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:60.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.89</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.97</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.86</span></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:60.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.36</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>0.86</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN>0.69</span></p>
+  </td>
+ </tr>
+ <tr style='height:23.25pt'>
+  <td width=156 valign=top style='width:117.0pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt;height:23.25pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='font-size:13.0pt'>Score</span></b></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:23.25pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='color:#212121;background:white'>0.8823529411764706</span></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:23.25pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='color:#212121;background:white'>0.8095238095238095</span></p>
+  </td>
+  <td width=156 valign=top style='width:117.0pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:23.25pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='color:#212121;background:white'>0.8571428571428571</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><b><span lang=EN style='font-size:13.0pt;line-height:115%;
+font-family:"Comic Sans MS"'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN>EXPERIMENT RESULTS: </span></b></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>➢<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN>Feature selection using PCA reduced features and gave good results.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>➢<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN>All the three machine learning algorithms gave satisfactory results and
+thus proved machine learning techniques can be used to solve the mineral
+detection problems.</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>➢<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN>K-fold cross validation showed the training and testing data split by
+the 80/20 ratio gives good results</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span lang=EN>➢<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN>Among the three ML algorithms, SVM is found to have the best result for
+this experiment.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&lt;div style=&quot;position: relative; width:
+100%; height: 0; padding-top: 56.2500%;</span></p>
+
+<p class=MsoNormal><span lang=EN> padding-bottom: 48px; box-shadow: 0 2px 8px 0
+rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;</span></p>
+
+<p class=MsoNormal><span lang=EN> border-radius: 8px; will-change:
+transform;&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN>  &lt;iframe loading=&quot;lazy&quot;
+style=&quot;position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+border: none; padding: 0;margin: 0;&quot;</span></p>
+
+<p class=MsoNormal><span lang=EN>   
+src=&quot;https:&amp;#x2F;&amp;#x2F;www.canva.com&amp;#x2F;design&amp;#x2F;DAEtAee0xRA&amp;#x2F;view?embed&quot;&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN>  &lt;/iframe&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN>&lt;/div&gt;</span></p>
+
+<p class=MsoNormal><span lang=EN>&lt;a
+href=&quot;https:&amp;#x2F;&amp;#x2F;www.canva.com&amp;#x2F;design&amp;#x2F;DAEtAee0xRA&amp;#x2F;view?utm_content=DAEtAee0xRA&amp;amp;utm_campaign=designshare&amp;amp;utm_medium=embeds&amp;amp;utm_source=link&quot;
+target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Automatic Mineral
+Detection on Lunar Surface&lt;/a&gt; by Insha Malayil</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><img width=339 height=234
+src="Project_midway_files/image005.gif" align=left hspace=12 vspace=12></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='color:#1A1B18;background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#980000;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#980000;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span lang=EN style='color:#980000;background:white'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN style='background:white'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;margin-right:0in;margin-bottom:1.5pt;
+margin-left:0in'><span lang=EN style='font-size:10.5pt;line-height:115%;
+font-family:"Courier New";color:#212121;background:white'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
